@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Confitec.Usuarios.API.Data;
+using Confitec.Usuarios.API.Interfaces;
+using Confitec.Usuarios.API.Repositorios;
+using Confitec.Usuarios.API.Servicos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Confitec.Usuarios.API
 {
@@ -26,6 +26,24 @@ namespace Confitec.Usuarios.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                //c.SwaggerDoc("v1", new Info { Title = "Confitec Test", Version = "v1" });
+
+                c.SwaggerDoc("v1", new OpenApiInfo());
+            });
+
+            services.AddDbContext<UsuariosDbContex>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IUsuariosRepositorio, UsuarioRepositorio>();
+
+            services.AddTransient<IUsuariosServico, UsuarioServico>();
+
+          
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +53,12 @@ namespace Confitec.Usuarios.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Values Api V1");
+            });
 
             app.UseHttpsRedirection();
 
@@ -46,6 +70,8 @@ namespace Confitec.Usuarios.API
             {
                 endpoints.MapControllers();
             });
+
+           
         }
     }
 }
