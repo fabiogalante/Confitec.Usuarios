@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Confitec.Usuarios.API
 {
@@ -29,9 +28,11 @@ namespace Confitec.Usuarios.API
 
             services.AddSwaggerGen(c =>
             {
-                //c.SwaggerDoc("v1", new Info { Title = "Confitec Test", Version = "v1" });
-
-                c.SwaggerDoc("v1", new OpenApiInfo());
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "API CONFITEC USUÁRIOS",
+                    Version = "V1"
+                });
             });
 
             services.AddDbContext<UsuariosDbContex>(options =>
