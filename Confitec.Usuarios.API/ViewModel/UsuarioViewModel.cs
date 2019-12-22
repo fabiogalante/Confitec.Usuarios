@@ -1,14 +1,16 @@
 ﻿using Confitec.Usuarios.API.Models;
 using System;
+using Confitec.Usuarios.API.Enum;
 
 namespace Confitec.Usuarios.API.ViewModel
 {
     public class UsuarioViewModel
     {
+
         public UsuarioViewModel(Usuario usuario)
         {
             DataNascimento = usuario.DataNascimento.ToString("dd/MM/yyyy");
-            Escolaridade = usuario.Escolaridade;
+            Escolaridade = ((Escolaridade) usuario.Escolaridade);
             Email = usuario.Email;
             Id = usuario.Id;
             Sobrenome = usuario.Sobrenome;
@@ -19,7 +21,7 @@ namespace Confitec.Usuarios.API.ViewModel
         public string Sobrenome { get; set; }
         public string Email { get; set; }
         public string DataNascimento { get; set; }
-        public int Escolaridade { get; set; }
+        public Escolaridade Escolaridade { get; set; }
 
 
     }
