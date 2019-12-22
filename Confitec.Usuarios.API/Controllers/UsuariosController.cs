@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Confitec.Usuarios.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("/api/[controller]")]
     [Produces("application/json")]
     [Consumes("application/json")]
     [ApiController]
