@@ -7,7 +7,7 @@ namespace Confitec.Usuarios.API.ViewModel
     {
         public UsuarioViewModel(Usuario usuario)
         {
-            DataNascimento = usuario.DataNascimento;
+            DataNascimento = usuario.DataNascimento.ToString("dd/MM/yyyy");
             Escolaridade = usuario.Escolaridade;
             Email = usuario.Email;
             Id = usuario.Id;
@@ -18,7 +18,7 @@ namespace Confitec.Usuarios.API.ViewModel
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Email { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
         public int Escolaridade { get; set; }
 
 

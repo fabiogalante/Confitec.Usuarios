@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Confitec.Usuarios.API.Interfaces;
-using Confitec.Usuarios.API.Models;
 using Confitec.Usuarios.API.Servicos.Request;
 using Flunt.Notifications;
 using Microsoft.AspNetCore.Http;
@@ -66,14 +63,14 @@ namespace Confitec.Usuarios.API.Controllers
 
 
         /// <summary>
-        /// Cadastro de usuários
+        /// Alteracao de usuários
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(typeof(HttpStatusCode), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(UnprocessableEntityObjectResult), (int)HttpStatusCode.UnprocessableEntity)]
-        public async Task<IActionResult> Alterar(IncluirUsuariosRequest request)
+        public async Task<IActionResult> Alterar(AlterarUsuariosRequest request)
         {
             return await _usuariosServico.AlterarUsuario(request);
         }

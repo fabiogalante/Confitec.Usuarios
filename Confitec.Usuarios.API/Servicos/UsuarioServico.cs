@@ -59,7 +59,7 @@ namespace Confitec.Usuarios.API.Servicos
             return new StatusCodeResult(500);
         }
 
-        public async Task<IActionResult> AlterarUsuario(IncluirUsuariosRequest request)
+        public async Task<IActionResult> AlterarUsuario(AlterarUsuariosRequest request)
         {
             try
             {
