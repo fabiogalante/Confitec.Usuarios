@@ -21,10 +21,26 @@ namespace Confitec.Usuarios.API
 
         public IConfiguration Configuration { get; }
 
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
+            });
+
 
             services.AddSwaggerGen(c =>
             {
@@ -42,7 +58,7 @@ namespace Confitec.Usuarios.API
 
             services.AddTransient<IUsuariosServico, UsuarioServico>();
 
-          
+
 
 
         }
@@ -72,7 +88,8 @@ namespace Confitec.Usuarios.API
                 endpoints.MapControllers();
             });
 
-           
+            app.UseCors();
+
         }
     }
 }

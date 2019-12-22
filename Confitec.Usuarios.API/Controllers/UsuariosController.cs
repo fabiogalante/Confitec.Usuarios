@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Confitec.Usuarios.API.Interfaces;
 using Confitec.Usuarios.API.Servicos.Request;
 using Flunt.Notifications;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
